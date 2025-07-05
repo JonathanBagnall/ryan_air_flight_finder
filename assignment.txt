@@ -1,0 +1,137 @@
+🎓 Project: Ryanair Flight Search Tool
+Goal: Build a functional web app in Python/Flask that allows a user to find the cheapest Ryanair flights from a selected airport on a selected date.
+
+🗂️ Project Structure & Phases
+📘 Phase 1: Environment & Foundations
+Learning Objectives: Setup, basic web serving, routing
+
+✅ Task 1.1 — Set Up the Development Environment
+Install Python 3.10+
+
+Install pip, venv
+
+Create and activate a virtual environment
+
+Install Flask:
+
+bash
+Copy
+Edit
+pip install flask
+Optional but encouraged: Install Flask-DebugToolbar
+
+✅ Deliverable: A requirements.txt file and a clean folder structure.
+
+✅ Task 1.2 — Create a Basic Flask App
+Create app.py with a simple Flask route (/)
+
+Display a minimal home page (HTML in a templates/ folder using Jinja)
+
+✅ Deliverable: Local server running http://localhost:5000 that shows "Welcome to the Ryanair Flight Finder".
+
+📗 Phase 2: UI & Input Handling
+Learning Objectives: HTML forms, user input, Flask request handling
+
+✅ Task 2.1 — Build the Search Form Page
+HTML form to input:
+
+Departure Airport (dropdown or text)
+
+Travel Date
+
+Optional: Budget cap
+
+Submit button that POSTs to a /results route
+
+✅ Deliverable: A clean and usable search form using Jinja templating.
+
+✅ Task 2.2 — Handle the Form Submission in Flask
+Create /results route
+
+Receive form input using request.form
+
+For now, just print or echo the input back on the results page
+
+✅ Deliverable: Form input is handled correctly and rendered back to the user.
+
+📕 Phase 3: API Interaction
+Learning Objectives: External APIs, HTTP requests, data validation
+
+✅ Task 3.1 — Investigate Ryanair or Kiwi API
+Choose one (likely the Kiwi API is easier to start with)
+
+Make test calls using Python’s requests module
+
+Return dummy results in your app (e.g., hardcoded flight data)
+
+✅ Deliverable: A separate Python module that fetches data from the API and returns parsed results (flights, prices, etc.).
+
+✅ Task 3.2 — Display Real Search Results
+Replace dummy data with real API results
+
+Sort by price (lowest first)
+
+Display flight info: destination, departure time, price
+
+✅ Deliverable: Functional results page showing real-time flight options from the given input.
+
+📙 Phase 4: Code Organization & Usability
+Learning Objectives: Code cleanliness, error handling, modular design
+
+✅ Task 4.1 — Refactor Code
+Move API interaction into a separate file/module
+
+Move form validation into its own function
+
+Use try/except blocks for network errors
+
+✅ Deliverable: Clean, readable, modular code structure.
+
+✅ Task 4.2 — Improve User Feedback
+Handle empty results or failed API calls gracefully
+
+Allow flexible date range searches (e.g., ±3 days)
+
+Add basic input validation and error messages
+
+✅ Deliverable: Robust and user-friendly experience even when things go wrong.
+
+📒 Phase 5: Polish & Submission
+Learning Objectives: Final product wrapping, documentation
+
+✅ Task 5.1 — Add Minimal Styling (Optional)
+Use Bootstrap or simple CSS for layout
+
+✅ Task 5.2 — Add README.md
+Explain what the project is
+
+How to install dependencies
+
+How to run the app
+
+Example usage
+
+✅ Task 5.3 — Bonus Features (Optional)
+Cache frequent results
+
+Use a database to store past searches
+
+Show map view of destinations
+
+📦 Final Submission Package
+All project files in a zipped folder or GitHub repo
+
+Clean, well-commented code
+
+Working demo of the app
+
+Short written reflection on what you learned and what you’d add if you had more time
+
+🧑‍🏫 How We'll Work
+As your "professor":
+
+You can report back after each task and I’ll review, suggest improvements, or debug with you
+
+If you're stuck, I’ll give hints, not full solutions (unless asked)
+
+I can help you write your README, testing checklist, or even prepare for a presentation
