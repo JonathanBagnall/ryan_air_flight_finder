@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block main_content %}
-<h1>Welcome to Ryanair Flight Finder!</h1>
-<p>Search for a city.</p>
+<h1>Results</h1>
+
 <form method="POST">
     {{ searchForm.csrf_token }}
     <div>
@@ -15,4 +15,6 @@
     </div>
     <p><input type="submit" value="Submit"></p>
 </form>
+
+<p>You searched for flights in <strong>{{ city }}</strong>, on <strong>{{ travel_date }}</strong></p>
 {% endblock %}
