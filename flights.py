@@ -3,13 +3,12 @@ import requests
 
 API_KEY = "fc4a1e43bd1163b0ef1a0ce7c2b8000f"
 
-def search_flights(iata_code, travel_date):
+def search_flights(iata_code):
     url = "http://api.aviationstack.com/v1/flights"
     params = {
         "access_key": API_KEY,
         "dep_iata": iata_code,
-        "flight_date": travel_date,
-        "limit": 10
+        "limit": 50
     }
 
     try:
@@ -21,7 +20,7 @@ def search_flights(iata_code, travel_date):
 
     data = response.json()
 
-    # ✅ THIS is the correct loop:
+    
     flights = []
     for item in data.get("data", []):
         flights.append({
