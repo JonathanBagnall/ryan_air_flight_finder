@@ -11,10 +11,24 @@
     </div>
     <div>
         {{ searchForm.date.label }}<br>
-        {{ searchForm.date(type="date", min=today) }}
+        {{ searchForm.date(type="date",) }}
     </div>
     <p><input type="submit" value="Submit"></p>
 </form>
 
-<p>You searched for flights in <strong>{{ city }}</strong>, on <strong>{{ travel_date }}</strong></p>
+ {% if flights %}
+  {% for flight in flights %}
+    <div class="flight-card">
+      <strong>Airline:</strong> {{ flight.airline }}<br>
+      <strong>Flight #:</strong> {{ flight.flight_number }}<br>
+      <strong>To:</strong> {{ flight.destination }}<br>
+      <strong>Departure:</strong> {{ flight.departure_time }}<br>
+      <strong>Status:</strong> {{ flight.status }}<br>
+    </div>
+    <hr>
+  {% endfor %}
+{% else %}
+  <p>No flights found for this date and city.</p>
+{% endif %}
+
 {% endblock %}
