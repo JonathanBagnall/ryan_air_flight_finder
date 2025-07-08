@@ -10,6 +10,12 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'THIS_IS_MY_SECRET_KEY'
 
 
+print(get_iata_code("Rio de Janeiro"))
+print(get_iata_code("rio de janeiro"))
+print(get_iata_code("RIO DE JANEIRO"))
+print(get_iata_code("   rio   de   janeiro  "))
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = searchForm(request.form)
