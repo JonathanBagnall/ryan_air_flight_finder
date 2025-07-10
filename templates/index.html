@@ -1,18 +1,15 @@
 {% extends "base.html" %}
 
 {% block main_content %}
-<h1>Welcome to Ryanair Flight Finder!</h1>
-<p>Search for a city.</p>
-<form method="POST">
-    {{ searchForm.csrf_token }}
-    <div>
-        {{ searchForm.city.label }}<br>
-        {{ searchForm.city(id="city_autocomplete") }}
-    </div>
-    <!-- <div>
-        {{ searchForm.date.label }}<br>
-        {{ searchForm.date(type="date", min=today) }}
-    </div> -->
-    <p><input type="submit" value="Submit"></p>
-</form>
+    <p style="text-align: center; margin-bottom: 20px;">
+        Enter a city name to see live Ryanair departures!
+    </p>
+    <form method="POST">
+        {{ searchForm.csrf_token }}
+        <div>
+            {{ searchForm.city.label }}<br>
+            {{ searchForm.city(id="city_autocomplete") }}
+        </div>
+        <p><input type="submit" value="Search Flights"></p>
+    </form>
 {% endblock %}

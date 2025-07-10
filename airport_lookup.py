@@ -1,5 +1,3 @@
-# airport_lookup.py
-
 import csv
 import os
 
@@ -16,14 +14,15 @@ try:
     with open(csv_path, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            if row["type"] != "large_airport":
+            if row["type"] not in ("large_airport", "medium_airport"):
                 continue
             city = row["municipality"]
             iata = row["iata_code"]
             if city and iata:
-                city_to_iata[normalize(city)] = iata.strip()
+                norm_city = normalize(city)
+                city_to_iata.setdefault(norm_city, []).append(iata.strip())
 except FileNotFoundError:
     print("CSV file not found:", csv_path)
 
-def get_iata_code(city):
-    return city_to_iata.get(normalize(city), None)
+def get_iata_codes(city):
+    return city_to_iata.get(normalize(city), [])

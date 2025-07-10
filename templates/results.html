@@ -1,34 +1,46 @@
 {% extends "base.html" %}
 
 {% block main_content %}
-<h1>Results</h1>
+    <form method="POST">
+        {{ searchForm.csrf_token }}
+        <div>
+            {{ searchForm.city.label }}<br>
+            {{ searchForm.city(id="city_autocomplete") }}
+        </div>
+        <p><input type="submit" value="Search Again"></p>
+    </form>
 
-<form method="POST">
-    {{ searchForm.csrf_token }}
-    <div>
-        {{ searchForm.city.label }}<br>
-        {{ searchForm.city(id="city_autocomplete") }}
-    </div>
-    <!-- <div>
-        {{ searchForm.date.label }}<br>
-        {{ searchForm.date(type="date",) }}
-    </div> -->
-    <p><input type="submit" value="Submit"></p>
-</form>
+    {% if iata_codes %}
+        <div style="margin: 20px 0;">
+            {% for code in iata_codes %}
+                <a href="{{ url_for('results', city=city, airport=code) }}"
+                   class="airport-btn {% if selected_airport == code %}active{% endif %}">
+                    {{ code }}
+                </a>
+            {% endfor %}
+        </div>
+    {% endif %}
 
- {% if flights %}
-  {% for flight in flights %}
-    <div class="flight-card">
-      <strong>Airline:</strong> {{ flight.airline }}<br>
-      <strong>Flight #:</strong> {{ flight.flight_number }}<br>
-      <strong>To:</strong> {{ flight.destination }}<br>
-      <strong>Departure:</strong> {{ flight.departure_time }}<br>
-      <strong>Status:</strong> {{ flight.status }}<br>
-    </div>
-    <hr>
-  {% endfor %}
-{% else %}
-  <p>No flights found for this date and city.</p>
-{% endif %}
+    <h2 style="margin-top: 30px;">
+        Live Flights Departing {{ city }}{% if selected_airport %} ({{ selected_airport }}){% endif %}
+    </h2>
 
+    {% if flights %}
+        {% for flight in flights %}
+            <div class="flight-card">
+                <strong>Airline:</strong> {{ flight.airline }}<br>
+                <strong>Flight #:</strong> {{ flight.flight_number }}<br>
+                <strong>To:</strong> {{ flight.destination }}<br>
+                <strong>Departure:</strong> {{ flight.departure_time }}<br>
+                <strong>Status:</strong> {{ flight.status }}<br>
+                {% if flight.tracking_url %}
+                    <a href="{{ flight.tracking_url }}" target="_blank" style="color:#007bff;">
+                        Track this flight →
+                    </a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No live flights found for this city at the moment.</p>
+    {% endif %}
 {% endblock %}
